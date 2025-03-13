@@ -11,12 +11,15 @@ def bisection(func, x, a, b, tolerance):
         else:
             i=0
             print(f"\n===== BISECTION STARTING ON A={a} AND B={b} =====\n")
+            relative = 0
             start = perf_counter()
-            while((b-a)>tolerance and i<500):
+            while(relative>tolerance and i<500):
                 i+=1
+                p_mid_point = mid_point
                 mid_point = (b+a)/2
+                relative = abs(p_mid_point-mid_point)/mid_point
                 fA, fMp, fB = func.subs(x, a), func.subs(x, mid_point), func.subs(x, b)
-                print(f"Iteration {i} -----> f(a={a}) = {fA} | f(mid_point={mid_point}) = {fMp} | f(b={b}) = {fB}")
+                print(f"Iteration {i} -----> f(a={a}) = {fA} | f(mid_point={mid_point}) = {fMp} | f(b={b}) = {fB} | Er = {relative:.15f}")
                 if fMp*fA < 0:
                     b = mid_point
                     print(f"Moving B to midpoint (Moving left)\n")

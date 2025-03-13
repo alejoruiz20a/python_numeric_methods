@@ -14,6 +14,7 @@ def newtonRaphson(func, d_func, x, a, tolerance):
             while i<500:
                 i+=1
                 fA, fdA = func.subs(x, a), d_func.subs(x, a)
+                prev_b = b
                 b = a - (fA/fdA)
                 print(f"Iteration {i} -----> f(a={a}) = {fA} | f'(a={a}) = {fdA} | b = {b}\n")
 

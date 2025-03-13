@@ -19,9 +19,8 @@ def falseRule(func, x, a, b, tolerance, overloop_prevention):
                 fA, fB = func.subs(x, a), func.subs(x, b)
                 xr = b - ((fB*(b-a))/(fB-fA))
                 fXr = func.subs(x, xr)
-
                 # OVERLOOP PREVENTION
-                if overloop_prevention and prev_xr is not None and abs(xr - prev_xr) < tolerance:
+                if overloop_prevention and prev_xr is not None and abs(xr - prev_xr)/xr < tolerance:
                     break
 
                 print(f"Iteration {i} -----> f(a={a}) = {fA} | f(Xr={xr}) = {fXr} | f(b={b}) = {fB}")
